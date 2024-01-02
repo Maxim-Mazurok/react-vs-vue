@@ -14,8 +14,6 @@ for (let i = 0; i < 1000; i++) {
   }, i % 100);
 }
 
-// refresh window when clock hits 1:40 pm:
-
 const numberFormatter = new Intl.NumberFormat("en-US", {
   style: "decimal",
   minimumFractionDigits: 2,
