@@ -4,11 +4,13 @@ Demonstrates performance differences between React and Vue.
 
 ## Method
 
-~~Increment internal counter state every 10ms and render it to DOM.~~
+Increment internal counter state every 1-100ms for each of a 1000 list items, and render it to DOM.
 
 ## Results
 
-~~React obliterates Vue in terms of performance on this test, running at least 700(!) times faster~~
+React obliterates Vue in terms of performance on this test, running at least 3.8x times faster
+
+[![Results](./results.gif)](./results.gif)
 
 ## Explanation
 
@@ -18,7 +20,7 @@ This difference is because of different reactivity models of React and Vue. Reac
 
 ## Conclusion
 
-~~React is better suited than Vue for apps with frequent state changes.~~
+React is better suited than Vue for apps with frequent state changes.
 
 ## Getting Started
 

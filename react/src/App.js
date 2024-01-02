@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
+import ListItem from "./ListItem";
 
 export default function MyApp() {
   const [count, setCount] = useState(0);
   const [start] = useState(Date.now());
 
-  useEffect(() => {
-    const addInterval = () =>
-      setInterval(() => {
-        setCount((count) => count + 1);
-        addInterval();
-      }, 10);
+  const [itemCounters, setItemCounters] = useState([]);
 
-    addInterval();
+  useEffect(() => {
+    for (let i = 0; i < 1000; i++) {
+      itemCounters[i] = 0;
+      setInterval(() => {
+        setItemCounters((prev) => {
+          const next = [...prev];
+          next[i] = next[i] + 1;
+          return next;
+        });
+        setCount((prev) => prev + 1);
+      }, i % 100);
+    }
   }, []);
 
   const numberFormatter = new Intl.NumberFormat("en-US", {
@@ -22,11 +29,18 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>React count is {count}</h1>
+      <h1>React item updates: {count}</h1>
       <h2>
-        Count increments times per second:
+        Updates per second:{" "}
         {numberFormatter.format((count / (Date.now() - start)) * 1000)}
       </h2>
+      <ul>
+        {itemCounters.map((item, i) => (
+          <li key={i}>
+            <ListItem text={`Item ${i} has been updated ${item} times`} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
