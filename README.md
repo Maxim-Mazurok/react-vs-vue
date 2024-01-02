@@ -1,4 +1,4 @@
-# [WIP] React VS Vue
+# React VS Vue
 
 Demonstrates performance differences between React and Vue.
 
