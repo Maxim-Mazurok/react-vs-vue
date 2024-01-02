@@ -4,9 +4,19 @@ import { ref } from "vue";
 const count = ref(0);
 const start = Date.now();
 
-setInterval(() => {
-  count.value++;
-}, 10);
+const addInterval = () =>
+  setInterval(() => {
+    count.value++;
+    addInterval();
+  }, 10);
+
+addInterval();
+
+const numberFormatter = new Intl.NumberFormat("en-US", {
+  style: "decimal",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
 </script>
 
 <template>
@@ -14,7 +24,7 @@ setInterval(() => {
     <h1>Vue count is {{ count }}</h1>
     <h2>
       Count increments times per second:
-      {{ ((count / (Date.now() - start)) * 1000).toFixed(2) }}
+      {{ numberFormatter.format((count / (Date.now() - start)) * 1000) }}
     </h2>
   </div>
 </template>
